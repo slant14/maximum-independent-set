@@ -16,7 +16,8 @@ def mis_qubo_matrix(graph, penalty=2):
     # Add quadratic terms (off-diagonal): penalty for connected vertices
     for u, v in graph.edges():
         i, j = node_to_index[u], node_to_index[v]
-        Q[i, j] = Q[j, i] = penalty
+        min_idx, max_idx = min(i, j), max(i, j)
+        Q[min_idx, max_idx] = penalty
     
     return Q, nodes
 
